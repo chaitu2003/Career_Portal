@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/lampbookcopy.jpg">
+    <style>
+        /* Add some basic styles for the two-column layout */
+        body {
+            font-family: 'Georgia', monospace;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: url('/static/images/<link rel="icon" type="image/x-icon" href="/static/images/lampbookcopy.jpg">') no-repeat center center;
+            background-size: contain;
+            opacity: 0.2; /* Adjust the transparency of the watermark */
+            z-index: -1; /* Ensure the watermark is behind the form content */
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .column {
+            width: 45%;
+        }
+
+        .details, .feedback {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .details p, .feedback label, .feedback select, .feedback textarea {
+            margin: 0;
+        }
+
+        .sub {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        h1, h2 {
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            color: rgb(255, 255, 255);
+            background-color: rgb(0, 0, 0);
+            border: none;
+            padding: 10px 20px;
+            margin: 0 auto;
+            display: block;
+            cursor: pointer;
+            border-radius: 15px;
+        } 
+    </style>
+    <script>
+        function displayPDF(registrationNumber) {
+            const pdfFrame = document.getElementById('pdfFrame');
+            pdfFrame.style.display = 'block';
+            pdfFrame.src = `/download_pdf/${registrationNumber}`;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="column">
+            <h1>User Details:</h1>
+            <!-- <form action="/registration.html" method="get"></form> -->
+            {% if user %}
+                <div class="details">
+                    Image:<p>
+                        <img src="/image/{{ user.profile_image1 }}" alt="Profile Image 1" style="max-width: 100px;">
+                    </p>
+                    <p>Registration Number:</p> <p>{{ user.registration_number }}</p>
+                    <p>Registration Date:</p> <p>{{ user.registration_date_only_str }}</p>
+                    
+                    <p>Name:</p> <p>{{user.pname}}</p>
+                    <p>Phone Number:</p> <p>{{user.phoneNumber}}</p>
+
+                    <p>Dob:</p> <p>{{ user.dob }}</p>
+                    <p>Email:</p> <p>{{ user.email }}</p>
+                    
+                    <p>Registration Type:</p> <p>{{ user.registration_type }}</p>
+
+                    <p>Father Name:</p> <p>{{user.fatherName}}</p>
+                    <p>Father Number:</p> <p>{{user.fatherNumber}}</p>
+                    <p>Father's Occupation:</p> <p>{{user.fatheroccupation}}</p>
+                    <p>Mother Name:</p> <p>{{user.motherName}}</p>
+                    <p>Current Address:</p> <p>{{user.Residencial_address}}</p>
+                    <p>Permanent address:</p> <p>{{user.Permanent_address}}</p>
+                    <p>School Institute Name:</p> <p>{{user.schoolInstituteName}}</p>
+                    <p>Stream:</p> <p>{{user.SchoolUniversity}}</p>
+                    <p>School Board Name:</p> <p>{{user.SchoolDegreeName}}</p>
+                    <p>School Percentage:</p> <p>{{user.Percentage_s}}</p>
+                    <p>Year of Passings:</p> <p>{{user.yearofpassings}}</p>
+
+                    <p>Intermediate Institute Name:</p> <p>{{user.IntermediateInstituteName}}</p>
+                    <p>Intermediate Stream:</p> <p>{{user.IntermediateUniversity}}</p>
+                    <p>Intermediate Board Name:</p> <p>{{user.IntermediateDegreeName}}</p>
+                    <p>Intermediate Percentage:</p> <p>{{user.Percentage_i}}</p>
+                    <p>Year Of Passing:</p> <p>{{user.yearofpassingi}}</p>
+
+                    <p>Undergraduate Degree Name:</p> <p>{{user.undergraduateDegreeName}}</p>
+                    <p>Undergraduate Institute Name:</p> <p>{{user.undergraduateInstituteName}}</p>
+                    <p>Undergraduate University:</p> <p>{{user.undergraduateUniversity}}</p>
+                    <p>Percentage:</p> <p>{{user.Percentage_ug}}</p>
+                    <p>Year Of Passing:</p> <p>{{user.yearofpassingug}}</p>
+
+                    <p>Post graduate Institute Name:</p> <p>{{user.postgraduateInstituteName}}</p>
+                    <p>Post graduate University:</p> <p>{{user.postgraduateUniversity}}</p>
+                    <p>Post graduate Degree Name:</p> <p>{{user.postgraduateDegreeName}}</p>
+                    <p>Post graduate Percentage:</p> <p>{{user.Percentage_pg}}</p>
+                    <p>Year of Passing (Post graduate):</p> <p>{{user.yearofpassingpg}}</p>
+
+                    <!-- <p>Email:</p> <p>{{ user.email }}</p> -->
+                    <!-- <p>Dob:</p> <p>{{ user.dob }}</p> -->
+                    <!-- <p>Registration Number:</p> <p>{{ user.registration_number }}</p> -->
+
+                    <!-- <p>profile_image1:</p> <p>{{ user.profile_image1 }}</p> -->
+                    <!-- Image:<p>
+                        <img src="/image/{{ user.profile_image1 }}" alt="Profile Image 1" style="max-width: 100px;">
+                    </p> -->
+                </div>
+                <!-- Add more details as needed -->
+                <!-- <form action="/download_pdf/{{ user.registration_number }}" method="get">
+                    <input type="submit" value="Download PDF">
+                </form> -->
+                <label>RESUME:</label>
+                <button onclick="displayPDF('{{ user.registration_number }}')">Display Resume</button>
+                <iframe id="pdfFrame" style="width:100%; height:600px; display:none;"></iframe>
+            {% else %}
+                <p>User not found</p>
+            {% endif %}
+        </div>
+        <div class="column">
+            {% if user %}
+                <h1>Manager Feedback:</h1>
+                <p>Manager Name: {{user.manager_username}} </p>
+                <p>Communication: {{user.manager_dropdown1}} </p>
+                <p>Technical Knowledge: {{user.manager_dropdown2}}</p>
+                <p>Practical Knowledge: {{user.manager_dropdown3}}</p>
+                <p>Overall Assessment: {{user.manager_dropdown4}}</p>
+                <p>Comment: {{user.manager_comment}}</p>
+            {% endif %}
+            {% if user %}
+            <h1>Director Feedback:</h1>
+                <form action="/store_director_details" method="POST">
+                    <input type="hidden" name="registration_number" value="{{ user.registration_number }}">
+                    <div class="feedback">
+                        <!-- <h2>Director Feedback</h2> -->
+                        <label for="communication">Communication:</label>
+                        <select id="communication" name="communication">
+                            <option value="Poor">Poor</option>
+                            <option value="basic">basic</option>
+                            <option value="average">average</option>
+                            <option value="Good">Good</option>
+                            <option value="Excellent">Excellent</option>
+                        </select>
+
+                        <label for="Technical_Knowledge">Technical Knowledge:</label>
+                        <select id="Technical_Knowledge" name="Technical_Knowledge">
+                            <option value="Poor">Poor</option>
+                            <option value="basic">basic</option>
+                            <option value="average">average</option>
+                            <option value="Good">Good</option>
+                            <option value="Excellent">Excellent</option>
+                        </select>
+
+                        <label for="Practical_Knowledge">Practical Knowledge:</label>
+                        <select id="Practical_Knowledge" name="Practical_Knowledge">
+                            <option value="Poor">Poor</option>
+                            <option value="basic">basic</option>
+                            <option value="average">average</option>
+                            <option value="Good">Good</option>
+                            <option value="Excellent">Excellent</option>
+                        </select>
+
+                        <label for="Overall_Assessment">Overall Assessment:</label>
+                        <select id="Overall_Assessment" name="Overall_Assessment">
+                            <option value="Poor">Poor</option>
+                            <option value="basic">basic</option>
+                            <option value="average">average</option>
+                            <option value="Good">Good</option>
+                            <option value="Excellent">Excellent</option>
+                        </select>
+
+                        <label for="comment">Comment:</label>
+                        <textarea id="comment" name="comment" rows="4" cols="50" required></textarea>
+
+                        <label for="Selection">Selection:</label>
+                        <div>
+                            <label for="selected">Selected</label>
+                            <input type="radio" id="selected" name="Selection" value="selected">
+                            <label for="not_selected">Not Selected</label>
+                            <input type="radio" id="not_selected" name="Selection" value="not_selected">
+                        </div>
+                    </div>
+                    <div class="sub">
+                        <input type="submit" value="Submit" style="border: 1px solid black; border-radius: 15px;background-color: black; color: white;">
+                    </div>
+                </form>
+            {% else %}
+                <p>User not found</p>
+            {% endif %}
+        </div>
+    </div>
+    
+</body>
+</html>

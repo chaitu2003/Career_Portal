@@ -1,0 +1,95 @@
+<!-- responses.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responses</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/lampbookcopy.jpg">
+    <style>
+        
+        *:before,
+        *:after {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: #1d1d1d;
+        }
+       .input-style {
+        padding: 10px;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        color: #555;
+        outline: none;
+        }
+        form{
+            background-color: rgba(255, 255, 255, 0.13);
+            position: relative;
+            border-radius: 10px;
+            /* backdrop-filter: blur(10px); */
+            /* padding: 50px 35px; */
+            color: #ffffff;
+        }
+        form input[type="submit"]{
+            background-color: #ffffff;
+            color: #080710;
+            padding:10px 0;
+            border-radius: 5px;
+        }
+        .res{
+            text-align: center;
+            color: #ffffff;
+            /* font-size: 32px; */
+            font-family: 'Poppins', sans-serif;
+        }
+        b{
+            font-family: 'Poppins', sans-serif;
+            font-size: medium;
+        }
+        .container input {
+            background-color: transparent;
+            border: 0;
+            border-bottom: 1px #fff solid;
+            display: block;
+            width: 100%;
+            /* padding: 17px 0; */
+            font-size: 16px;
+            color: #fff;
+        }
+        .submit{
+            display: block;
+            margin-top: 10%;
+        }
+        input[type="submit"]:hover{
+            cursor: pointer;
+        }
+        .container{
+            font-family: 'Poppins', sans-serif;
+        }
+        .inside{
+            padding: 50px 35px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- <h1 class="res">Responses</h1> -->
+        <form id="responses-form" action="/show_responses" method="post">
+            <div class="inside">
+                <h2 class="res">RESPONSES</h2><br>
+            <label for="registration_number"><b>Enter Registration Number:</b></label><br><br>
+            <input placeholder="Enter registered number" class="input-style" type="text" id="registration_number" name="registration_number" required><br>
+            <!-- <input type="text" id="registration_number" name="registration_number" required> -->
+            <input type="submit" value="Show Responses" class="submit">
+            </div>
+        </form>
+        <div id="responses-display">
+            <!-- Responses will be displayed here -->
+        </div>
+    </div>
+</body>
+</html>

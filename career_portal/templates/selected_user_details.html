@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selected User Details</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/lampbookcopy.jpg">
+</head>
+<body>
+    <h1>Selected User Details</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Registration Number</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in selected_users %}
+            <tr>
+                <td>{{ user.registration_number }}</td>
+                <td>{{ user.email }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

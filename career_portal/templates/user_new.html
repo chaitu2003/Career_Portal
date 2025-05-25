@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Page</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/<link rel="icon" type="image/x-icon" href="/static/images/lampbookcopy.jpg">') }}">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffffff; /* Optional: background color for the page */
+        }
+
+        .container {
+            text-align: center;
+            background-color: rgba(22, 20, 20, 0.1); /* Transparent box */
+            padding: 100px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            color: #212121;
+            margin-bottom: 50px;
+        }
+
+        a {
+            position: relative;
+            display: inline-block;
+            padding: 15px 30px;
+            border: 2px solid #fefefe;
+            text-transform: uppercase;
+            color: #fefefe;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        a::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: -2px;
+            width: calc(100% + 4px);
+            height: calc(100% - 12px);
+            background-color: #212121;
+            transition: 0.3s ease-in-out;
+            transform: scaleY(1);
+        }
+
+        a:hover::before {
+            transform: scaleY(0);
+        }
+
+        a::after {
+            content: '';
+            position: absolute;
+            left: 6px;
+            top: -2px;
+            height: calc(100% + 4px);
+            width: calc(100% - 12px);
+            background-color: #212121;
+            transition: 0.3s ease-in-out;
+            transform: scaleX(1);
+            transition-delay: 0.5s;
+        }
+
+        a:hover::after {
+            transform: scaleX(0);
+        }
+
+        a span {
+            position: relative;
+            z-index: 3;
+        }
+
+        button {
+            background-color: none;
+            text-decoration: none;
+            background-color: #212121;
+            border: none;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>USER RESULTS</h1>
+        <button>
+            <a href="{{ url_for('user_info', registration_number=registration_number) }}"><span>Results</span></a>
+        </button>
+        <br>
+        {% if pdf_id %}
+        <a href="{{ url_for('get_pdf', pdf_id=pdf_id) }}">PDF 1 here</a>
+    {% else %}
+        <!-- <p>No PDF available</p> -->
+    {% endif %}
+    </div>
+</body>
+</html>

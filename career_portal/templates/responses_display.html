@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Responses</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/lampbookcopy.jpg">
+    <style type="text/css">
+        h1 {
+            text-align: center;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        h2 {
+            color: #333;
+            padding: 10px 0;
+            border-bottom: 1px solid #ccc;
+        }
+
+        p {
+            color: #666;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>User Responses</h1><br>
+        <!-- <div class="manager-responses"> -->
+        <h2>Manager Responses</h2>
+        <p>Dropdown 1: {{ user.manager_dropdown1 }}</p>
+        <p>Dropdown 2: {{ user.manager_dropdown2 }}</p>
+        <p>Dropdown 3: {{ user.manager_dropdown3 }}</p>
+        <p>Dropdown 4: {{ user.manager_dropdown4 }}</p>
+        <p>Comment: {{ user.manager_comment }}</p>
+        <!-- </div> -->
+        <!-- <div class="director-responses"> -->
+        <h2>Director Responses</h2>
+        <p>Dropdown 1: {{ user.director_dropdown1 }}</p>
+        <p>Dropdown 2: {{ user.director_dropdown2 }}</p>
+        <p>Dropdown 3: {{ user.director_dropdown3 }}</p>
+        <p>Dropdown 4: {{ user.director_dropdown4 }}</p>
+        <p>Comment: {{ user.director_comment }}</p>
+        <!-- </div> -->
+    </div>
+</body>
+</html>

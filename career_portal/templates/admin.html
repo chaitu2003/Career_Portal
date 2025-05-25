@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/lampbookcopy.jpg">
+    <style>
+        :root {
+            --clr-neon: rgb(46, 46, 46);
+            /* --clr-bg: rgba(1, 1, 1, 1);
+            --clr-white: rgba(255, 255, 255, 1); */
+        }
+        body, html {
+            background-color: #d3d3d3;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        h1{
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+        }
+        form{
+            /* background-image: url('/static/images/images.jpeg'); */
+            background-size: auto;
+            background-position: auto;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+        .title-frame {
+            /* flex: 0 0 auto; */
+            width: 20%;
+            /* height: 15%; */
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-bottom: 1px solid #ccc;
+            background-image: url('static/images/blue-bg1.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .title-frame h1 {
+            text-align: center;
+        }
+
+        .content {
+            flex: 1;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            flex: 0 0 20%;
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-right: 1px solid #ccc;
+        }
+
+        .button-container {
+            margin-bottom: 20px;
+        }
+
+        .button-container form {
+            margin-bottom: 10px;
+        }
+        .button:hover,
+        .button:focus {
+            color: var(--clr-bg);
+            text-shadow: none;
+        }
+        .button:hover::before,
+        .button:focus::before {
+            opacity: 1;
+            transform: perspective(1em) rotateX(40deg) scale(1.5, 0.6);
+            transition: transform 0.5s linear;
+        }
+
+        .button:hover::after,
+        .button:focus::after {
+            opacity: 1;
+        }
+        .button-container input[type="submit"] {
+            font-size: 1.7em;
+            display: inline-block;
+            width: 100%;
+            cursor: pointer;
+            text-decoration: none;
+            /* color: var(--clr-neon); */
+            border: var(--clr-neon) 4px solid;
+            padding: 0.15em 0.5em;
+            border-radius: 0.15em;
+
+            /* text-shadow: 0 0 0.175em rgba(187, 180, 180, 0.55), 0 0 0.5em currentColor; */
+
+            box-shadow: inset 0 0 0.5em 0 var(--clr-neon), 0 0 0.5em 0 var(--clr-neon);
+            position: relative;
+        }
+        .button-container::before {
+            pointer-events: none;
+            content: "";
+            position: absolute;
+            background: var(--clr-neon);
+            top: 10000%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: perspective(1.2em) rotateX(40deg) scale(1.5, 0.5);
+            filter: blur(1.15em);
+            opacity: 0.7;
+            transition: transform 0.5s linear;
+        }
+
+        .button-.container {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0 0 4em 0.6em var(--clr-neon), 0 0 1em 0.2em var(--clr-white);
+            opacity: 0;
+            background: var(--clr-neon);
+            z-index: -1;
+            transition: opacity 0.5s linear;
+            color: black;
+        }
+
+        .button-container input[type="submit"]:hover {
+            background-color: #ffffff;
+        }
+
+        .content-area {
+            flex: 1;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-size: cover;
+            background-position: center;
+            margin-bottom: 18%;
+            margin-left: 15%;
+            margin-right: 15%;
+        }
+
+        .content-area img {
+            max-width: 200%;
+            max-height: 100%;
+            border-radius: 10px;
+            /* box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1); */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title-frame">
+            <h1 align="center">ADMIN PAGE</h1>
+        </div>
+        <div class="content">
+            <div class="sidebar">
+                <div class="button-container">
+                    <form id="manager-selection-form" action="/director_selection" method="get">
+                        <input type="submit" value="Results">
+                    </form>
+                    <form id="registered-details-form" action="/registered_details" method="get">
+                        <input type="submit" value="Registered Details">
+                    </form>
+                    <!-- <form id="selected-user-details" action="/selected_user_details" method="get">
+                        <input type="submit" value="View Selected Users">
+                    </form> -->
+                    <form id="responses-form" action="/responses" method="get">
+                        <input type="submit" value="Responses">
+                    </form>
+                </div>
+            </div>
+            <div class="content-area" id="dynamic-content">
+                <!-- Content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            function loadContent(url) {
+                fetch(url)
+                    .then(response => response.text())
+                    .then(html => {
+                        document.getElementById("dynamic-content").innerHTML = html;
+                    })
+                    .catch(error => console.error('Error fetching content:', error));
+            }
+
+            document.querySelectorAll(".button-container form").forEach(form => {
+                form.addEventListener("submit", function(event) {
+                    event.preventDefault();
+                    const url = this.action;
+                    loadContent(url);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

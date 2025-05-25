@@ -1,0 +1,18 @@
+/* print.css */
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-size: 20px;
+}
+
+p {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+button {
+    display: none;  /* Hide the print button when printing */
+}

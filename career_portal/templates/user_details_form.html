@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/x-icon" href="/static/images/lampbookcopy.jpg">
+    <style>
+        .container {
+  display: inline;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  user-select: none;
+}
+
+.text {
+  font-size: 0.8rem;
+  text-align: left;
+  width: 100%;
+  color: black;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+
+.input {
+  border-radius: 8px;
+  padding: 7px 16px;
+  box-shadow: rgba(77, 79, 82, 0.2) 0px 8px 24px;
+  border: 2px solid rgb(184, 180, 180);
+  font-size: 0.8rem;
+  outline: none;
+  transition: 0.5s ease;
+}
+
+.input:hover {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  border-color: rgb(138, 175, 255);
+}
+
+.input:focus {
+  border: 2px solid rgb(57, 120, 255);
+  box-shadow: rgba(133, 130, 130, 0.1) 0px 4px 12px;
+  transform: scale(0.99);
+}
+
+.input::placeholder {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.button {
+  padding: 6px 15px;
+  text-align: center;
+  color: rgb(95, 87, 87);
+  cursor: pointer;
+  background-color: white;
+  border-radius: 6px;
+  border: none;
+  transition: 0.5s;
+  width: 55%;
+  margin-top: 7px;
+  margin-left: 8%;
+  font-size: 13px;
+  box-shadow: rgba(104, 100, 100, 0.1) 0px 4px 6px -1px, rgba(49, 42, 42, 0.06) 0px 2px 4px -1px;
+}
+
+.button:hover {
+  border-radius: 7px;
+  background-color: rgb(243, 242, 242);
+  border-color: rgb(236, 232, 232);
+}
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details Form</title>
+</head>
+<body>
+    <h1>User Details Form</h1>
+    <form action="/user_details" method="post">
+        <input class="input" type="text" id="registration_number" name="registration_number" placeholder="Enter Registration Number">
+        <button class="button" type="submit">submit</button>    
+        <!-- <input type="text" id="registration_number" name="registration_number" placeholder="Enter Registration Number">
+        <input type="submit" value="Get User Details"> -->
+    </form>
+</body>
+</html>

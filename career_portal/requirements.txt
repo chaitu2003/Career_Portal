@@ -1,0 +1,7 @@
+flask
+flask-pymongo
+python-docx
+bs4
+requests
+convertapi
+reportlab

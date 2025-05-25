@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/lampbookcopy.jpg">
+    <style>
+        *,
+        *:before,
+        *:after {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #080710;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .background {
+            width: 430px;
+            height: 520px;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top: 50%;
+        }
+
+        .background .shape {
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        form {
+            width: 400px;
+            background-color: rgba(255, 255, 255, 0.2); /* Glass effect with transparency */
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+            padding: 50px 35px;
+            color: #ffffff;
+        }
+
+        form h3 {
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 42px;
+            text-align: center;
+        }
+
+        form button {
+            margin-top: 50px;
+            width: 100%;
+            background-color: #ffffff;
+            color: #080710;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-control {
+            position: relative;
+            margin: 20px 0 40px;
+            width: 190px;
+        }
+
+        .form-control input {
+            background-color: transparent;
+            border: 0;
+            border-bottom: 1px #fff solid;
+            display: block;
+            width: 100%;
+            padding: 17px 0;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        .form-control input:focus,
+        .form-control input:valid {
+            outline: 0;
+            border-bottom-color: lightblue;
+        }
+
+        .form-control label {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .form-control label span {
+            display: inline-block;
+            font-size: 18px;
+            min-width: 5px;
+            color: #fff;
+            transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .form-control input:focus+label span,
+        .form-control input:valid+label span {
+            color: lightblue;
+            transform: translateY(-30px);
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+    <form action="/admin/login" method="post">
+        <h3>Admin login</h3>
+
+        <div class="form-control">
+            <input type="text" name="username" required="">
+            <label>
+                <span style="transition-delay:0ms">U</span><span style="transition-delay:50ms">s</span><span style="transition-delay:100ms">e</span><span style="transition-delay:150ms">r</span><span style="transition-delay:200ms">n</span><span style="transition-delay:250ms">a</span><span style="transition-delay:300ms">m</span><span style="transition-delay:350ms">e</span>
+            </label>
+        </div>
+        <div class="form-control">
+            <input type="password" name="password" required="">
+            <label>
+                <span style="transition-delay:0ms">p</span><span style="transition-delay:50ms">a</span><span style="transition-delay:100ms">s</span><span style="transition-delay:150ms">s</span><span style="transition-delay:200ms">w</span><span style="transition-delay:250ms">o</span><span style="transition-delay:300ms">r</span><span style="transition-delay:350ms">d</span>
+            </label>
+            </label>
+            </label>
+        </div>
+        <button>Log In</button>
+    </form>
+</body>
+</html>

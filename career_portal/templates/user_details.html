@@ -1,0 +1,23 @@
+<!-- Inside user_details.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/lampbookcopy.jpg">
+</head>
+<body>
+    <h1>User Details</h1>
+    {% if user %}
+        <p>Username: {{ user.username }}</p>
+        <p>Email: {{ user.email }}</p>
+        <!-- Add more details as needed -->
+        <form action="/download_pdf/{{ user.registration_number }}" method="get">
+            <input type="submit" value="Download PDF">
+        </form>
+    {% else %}
+        <p>User not found</p>
+    {% endif %}
+</body>
+</html>

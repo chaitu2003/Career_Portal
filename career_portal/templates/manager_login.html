@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Login</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/lampbookcopy.jpg">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #080710;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        form {
+            width: 400px;
+            background-color: rgba(255, 255, 255, 0.13);
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+            padding: 50px 35px;
+            color: #ffffff;
+        }
+
+        form h1 {
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 42px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+        form input {
+            background-color: transparent;
+            border: 0;
+            border-bottom: 1px #fff solid;
+            display: block;
+            width: 100%;
+            padding: 17px 0;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        form input:focus {
+            outline: 0;
+            border-bottom-color: lightblue;
+        }
+
+        form input[type="submit"] {
+            margin-top: 50px;
+            width: 100%;
+            background-color: #ffffff;
+            color: #080710;
+            padding: 15px 0;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form action="/manager/login" method="post">
+        <h1>Manager Login</h1>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Director Selection Results</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/lampbookcopy.jpg">
+    <style>
+        * {
+            text-align: center;
+        }
+        .center-table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+        .center-table th, .center-table td {
+            text-align: center;
+            border: 1px solid black;
+            padding: 8px;
+        }
+        .center-table th {
+            background-color: #f2f2f2;
+        }
+        form select, form input, form label, form button {
+            cursor: pointer;
+        }
+        form button {
+            background-color: #ffffff;
+            color: #080710;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Director Selection Results</h1>
+    <form method="get" action="{{ url_for('filter_results') }}">
+        <label for="filter">Filter:</label>
+        <select name="filter" id="filter">
+            <option value="today">Today</option>
+            <option value="yesterday">Yesterday</option>
+            <option value="week">This Week</option>
+            <option value="month">This Month</option>
+        </select><br><br>
+        <label for="from_date">From:</label>
+        <input type="date" id="from_date" name="from_date">
+        <label for="to_date">To:</label>
+        <input type="date" id="to_date" name="to_date"><br><br>
+        <input type="hidden" name="selection" value="{{ selection }}">
+        <button type="submit">Apply Filter</button>
+    </form>
+    <br>
+    <table class="center-table">
+        <thead>
+            <tr>
+                <th class="center">Registration Number</th>
+                <th class="center">Name</th>
+                <th class="center">Phone</th>
+                <th class="center">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td class="center">{{ user.registration_number }}</td>
+                <td class="center">{{ user.pname }}</td>
+                <td class="center">{{ user.phoneNumber }}</td>
+                <td class="center">{{ user.email }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <form action="{{ url_for('download_excel') }}" method="post">
+        <button type="submit">Download as CSV</button>
+    </form>
+</body>
+</html>

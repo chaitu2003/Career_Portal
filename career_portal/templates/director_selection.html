@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Results</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/lampbookcopy.jpg">
+    <style>
+        .rev {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+        }
+        .button-container {
+            margin-bottom: 10px;
+        }
+        form {
+            background-color: rgba(19, 19, 19, 0.13);
+            border-radius: 10px;
+        }
+        .button-container form {
+            margin-bottom: 10px;
+        }
+        .button-container button[type="submit"] {
+            width: 100%;
+            font-size: 1.5em;
+            display: block;
+            cursor: pointer;
+            text-decoration: none;
+            border: var(--clr-neon) 3px solid;
+            padding: 0.15em 0.5em;
+            border-radius: 0.15em;
+            box-shadow: inset 0 0 0.5em 0 var(--clr-neon), 0 0 0.5em 0 var(--clr-neon);
+            position: relative;
+        }
+        .button-container button[type="submit"]:hover {
+            background-color: #ffffff;
+        }
+        .inside {
+            padding: 50px 35px;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <div class="inside">
+            <h2 class="rev">RESULTS:</h2><br>
+            <form action="{{ url_for('director_selection_redirect_selected') }}" method="POST">
+                <button type="submit">Selected</button>
+            </form>
+            <br>
+            <form action="{{ url_for('director_selection_redirect_not_selected') }}" method="POST">
+                <button type="submit">Not Selected</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

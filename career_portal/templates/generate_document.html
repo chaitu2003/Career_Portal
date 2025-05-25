@@ -1,0 +1,18 @@
+<!-- templates/generate_document.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Document</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/lampbookcopy.jpg">
+</head>
+<body>
+    <h1>Generate Document</h1>
+    <form action="{{ url_for('generate_document') }}" method="post">
+        <label for="registration_number">Registration Number:</label>
+        <input type="text" id="registration_number" name="registration_number" required>
+        <button type="submit">Generate</button>
+    </form>
+</body>
+</html>

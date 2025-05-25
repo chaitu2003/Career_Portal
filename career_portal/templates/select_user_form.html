@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/x-icon" href="/static/images/lampbookcopy.jpg">
+    <style>
+        #form{
+        margin-bottom: 50%;
+        }
+
+        .input-style {
+  padding: 10px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #555;
+  outline: none;
+}
+
+.input-style:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+    /* .submit{
+        display: block;
+        margin-top: 10%;
+        margin-left: 25%;
+    } */
+
+    .radio{
+        margin-top: 2%;
+        margin-left: 10%;
+    }
+
+    .selected{
+        margin-right: 10%;
+    }
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select User Form</title>
+</head>
+<body>
+    <h1>Select User Form</h1>
+    <form action="/select_user" method="post" id="form">
+        
+        <label for="registration_number">Registration Number:</label>
+        <input placeholder="Enter text here" class="input-style" type="text" />
+        <!-- <input type="text" id="registration_number" name="registration_number"> -->
+        <br>
+        <div class="radio">
+            <input type="radio" id="selected" name="selected" value="selected" >
+            <label for="selected" class="selected">Selected</label>
+            <input type="radio" id="not_selected" name="selected" value="not_selected" checked class="not_selected">
+            <label for="not_selected">Not Selected</label>
+        </div>
+        <br>
+        <br>
+        <input type="submit" value="Submit" class="submit">
+
+       
+    </form>
+</body>
+</html>

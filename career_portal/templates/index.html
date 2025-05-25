@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>CAREER PORTAL</title>
+  <link rel="icon" type="image/x-icon" href="/static/images/lampbookcopy.jpg">
+  <script type="text/javascript">
+    var counter = 1;
+    setInterval(function () {
+      document.getElementById('radio' + counter).checked = true;
+      counter++;
+      if (counter > 3) {
+        counter = 1;
+      }
+    }, 5000);
+    
+  </script>
+
+  <style type="text/css">
+    #header {
+  text-align: center;
+  padding: 20px;
+  background-color: #000000; /* You can change this color to your desired one */
+  color: rgb(139, 78, 78);
+  font-size: 24px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+    #funnl-container {
+      text-align: center;
+    }
+    
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden; /* To prevent side-scrolling */
+    }
+
+    .slider {
+        display: inline-block;
+      position: relative;
+      margin-right: 35%;
+      width: 70%; /* Adjust the width of the slider */
+      height: 100vh;
+      overflow: hidden;
+      float: none; /* Float the slider to the left */
+    }
+
+    .login-container {
+        display: inline-block;
+      float: none; /* Float the login form to the right */
+      margin-top: 0%;
+      margin-left: 50%; /* Adjust the right margin */
+      padding: 50px;
+      text-align: center;
+      /* backdrop-filter: blur(1px); */
+      border-radius: 25px;
+    }
+
+    /* Add your other styles for .slides, .slide, img, .navigation-auto, .navigation-manual, etc. */
+
+    /* Add your other styles for .box, .inputbox, #a, etc. */
+
+    /* Optional: If you want to center the login form vertically */
+
+    .login-container {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* Add your other styles for .inputbox, #a, etc. */
+
+    /* Add your other styles for .inputbox, #a, etc. */
+
+    #a{
+				margin-left: 30%;
+				padding: 5px 33px;
+				border-radius: 25px;
+				background-color: grey;
+				cursor: pointer;
+				box-shadow: 1px 1px 4px;
+			}
+
+            #table{
+				border-radius: 25px;
+				margin-right: 40%;
+				margin-top: 10%;
+				margin-left: 35%;
+				padding: 50px 50px;
+				text-align: center;
+				backdrop-filter: blur(1px);
+			}
+            #hi{
+				font-size: 150%;
+				color: white;
+				font-family: 'Times New Roman', Times, serif;
+			}
+
+            .box{
+				text-align: left;
+				padding: 0;
+				content: '';
+				position: absolute;
+				height: 40%;
+				width: 30%;
+				/* background: rgb(253, 255, 255); */
+				border-top-left-radius:20px;
+				border-top-right-radius:20px;
+				border-bottom-right-radius: 20px;
+				border-bottom-left-radius: 20px;
+				align-items: center;
+				justify-content: center;
+				display: flex;
+			}
+
+            .n{
+				border-top-left-radius:20px;
+				border-top-right-radius:20px;
+				border-bottom-right-radius: 20px;
+				border-bottom-left-radius: 20px;
+			}
+
+      a {
+      position: relative;
+      display: inline-block;
+      padding: 15px 30px;
+      border: 2px solid #fefefe;
+      text-transform: uppercase;
+      color: #fefefe;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 20px;
+    }
+
+    a::before {
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: -2px;
+      width: calc(100% + 4px);
+      height: calc(100% - 12px);
+      background-color: #212121;
+      transition: 0.3s ease-in-out;
+      transform: scaleY(1);
+    }
+
+    a:hover::before {
+      transform: scaleY(0);
+    }
+
+    a::after {
+      content: '';
+      position: absolute;
+      left: 6px;
+      top: -2px;
+      height: calc(100% + 4px);
+      width: calc(100% - 12px);
+      background-color: #212121;
+      transition: 0.3s ease-in-out;
+      transform: scaleX(1);
+      transition-delay: 0.5s;
+    }
+
+    a:hover::after {
+      transform: scaleX(0);
+    }
+
+    a span {
+      position: relative;
+      z-index: 3;
+    }
+
+    button {
+      background-color: none;
+      text-decoration: none;
+      background-color: #212121;
+      border: none;
+    }
+      </style>
+
+      <!-- Inside the head section of your HTML files -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css') }}">
+
+</head>
+<body>
+  <div id="header" style="font-size: 35px;"><b>
+    CAREER PORTAL</b>
+  </div>
+  <br>
+  <!--image slider start-->
+  <div class="slider">
+    <div class="slides">
+      <!--radio buttons start-->
+      <input type="radio" name="radio-btn" id="radio1">
+      <input type="radio" name="radio-btn" id="radio2">
+      <input type="radio" name="radio-btn" id="radio3">
+      <!-- <input type="radio" name="radio-btn" id="radio4"> -->
+      <!--radio buttons end -->
+      <!--slide images start-->
+      <div class="slide first">
+        <img src="{{ url_for('static', filename='images/one.png') }}" alt="1">
+      </div>
+      <div class="slide">
+       <img src="{{ url_for('static', filename='images/two.png') }}" alt="Example Image">
+      </div>
+      <div class="slide">
+        <img src="{{ url_for('static', filename='images/three.png') }}" alt="Example Image">
+      </div>
+      <!-- <div class="slide">
+        <img src="{{ url_for('static', filename='images/four.png') }}" alt="Example Image">
+      </div> -->
+      <!--slide images end-->
+      <!--automatic navigation start-->
+      <div class="navigation-auto">
+        <div class="auto-btn1"></div>
+        <div class="auto-btn2"></div>
+        <div class="auto-btn3"></div>
+        <!-- <div class="auto-btn4"></div> -->
+      </div>
+      <!--automatic navigation end-->
+    </div>
+    <!--manual navigation start-->
+    <div class="navigation-manual">
+      <label for="radio1" class="manual-btn"></label>
+      <label for="radio2" class="manual-btn"></label>
+      <label for="radio3" class="manual-btn"></label>
+      <!-- <label for="radio4" class="manual-btn"></label> -->
+    </div>
+    <!--manual navigation end-->
+  </div>
+  <!--image slider end-->
+
+  <!-- Login form container -->
+  <div class="login-container">
+    <table border="0" background="transparent" cellpadding="0" cellspacing="10" id="table">
+      <tr>
+        <!-- <th colspan="3" id="hi">LOG IN</th> -->
+      </tr>
+      <tr>
+        <th colspan="3"></th>
+      </tr>
+      <tr>
+        <td>
+          <!-- <div class="form-control">
+            <input type="value" required="" id="username">
+            <label>
+                <span style="transition-delay:0ms">U</span><span style="transition-delay:50ms">s</span><span style="transition-delay:100ms">e</span><span style="transition-delay:150ms">r</span><span style="transition-delay:200ms">n</span><span style="transition-delay:250ms">a</span><span style="transition-delay:300ms">m</span><span style="transition-delay:350ms">e</span>
+            </label>
+        </div> -->
+        </td>
+      </tr>
+      <tr>
+        <th colspan="3"></th>
+      </tr>
+      <tr>
+        <td>
+          <!-- <div class="form-control">
+            <input type="value" required="" id="password">
+            <label>
+                <span style="transition-delay:0ms">P</span><span style="transition-delay:50ms">A</span><span style="transition-delay:100ms">S</span><span style="transition-delay:150ms">S</span><span style="transition-delay:200ms">W</span><span style="transition-delay:250ms">O</span><span style="transition-delay:300ms">R</span><span style="transition-delay:350ms">D</span>
+            </label>
+        </div> -->
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <!-- <p style="color: white;">or</p> -->
+          
+          <button>
+            <a href="{{ url_for('registration') }}"><span>Register</span></a> 
+          </button>
+
+<!-- Login button -->
+
+        </td>
+
+        <td colspan="3">
+            <button>
+              <a href="{{ url_for('login') }}" class="a"><span>Login</span></a> 
+            </button>
+        </td>
+      </tr>
+      <td colspan="2"> 
+          <button>
+          <a href="{{ url_for('admin_login') }}" class="a"><span>Admin login</span></a> 
+        </button>
+        </td>
+      <tr>
+        <td colspan="3"></td>
+      </tr>
+      <tr>
+        <td colspan="3"></td>
+      </tr>
+      <tr>
+        
+      </tr>
+    </table>
+  </div>
+
+  <script type="text/javascript">
+    var counter = 1;
+    setInterval(function () {
+      document.getElementById('radio' + counter).checked = true;
+      counter++;
+      if (counter > 4) {
+        counter = 1;
+      }
+    }, 5000);
+  </script>
+
+</body>
+</html>

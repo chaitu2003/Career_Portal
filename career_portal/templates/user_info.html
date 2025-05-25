@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/lampbookcopy.jpg">
+    <style>
+        .p1 {
+            width: 200px; /* Set the desired width for the profile image */
+            height: auto; /* Automatically adjust height to maintain aspect ratio */
+            margin-bottom: 20px; /* Add some space between images */  
+        }
+
+        .p2 {
+            width: 150px; /* Set the desired width for the signature image */
+            height: auto; /* Automatically adjust height to maintain aspect ratio */
+            margin-bottom: 20px; /* Add some space between images */
+        }
+    
+        body {
+            /* background-image: url('/static/images/blue-bg1.png'); */
+            /* position: relative;
+            background: url('/static/images/images.jpeg') no-repeat center center; */
+            /* background-size: fixed; */
+            text-align: center;
+            color: rgb(0, 0, 0);
+            /* align-items: center; */
+        }
+        
+        body::before {
+            opacity: 0.2; /* Adjust the transparency of the watermark */
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* width: 10%;
+            height: 10%; */
+            background: url('/static/images/<link rel="icon" type="image/x-icon" href="/static/images/lampbookcopy.jpg">') no-repeat center center;
+            background-size: 50%; /* Increase the size of the image */
+            z-index: -1; /* Ensure the watermark is behind the form content */
+        }
+
+        form {
+            
+            width: 400px; /* Adjust width as needed */
+            background: rgba(31, 26, 26, 0.5); /* Adjust background color and transparency */
+            padding: 20px;
+            border-radius: 20px;
+            display: inline-block;
+            flex-direction: column;
+            align-items: center;
+            /* text-align: center; */
+        }
+        input[type="submit"] {
+            display: center;
+            margin-bottom: 10px;
+        }
+        button[type="submit"] {
+            color: black;
+            background-color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 auto;
+            display: block;
+            cursor: pointer;
+        }
+        h1 {
+            text-align: center;
+            color: rgb(0, 0, 0);
+            font-size: 42px;
+        }
+        p {
+            text-align: left;
+            color: rgb(0, 0, 0);
+            margin-bottom: 20px;
+        }
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+            width: 30%;
+            height: 10%;
+            text-align: left;
+            /* border-spacing: 20px; */
+        }
+        td,th{
+            text-align: left;
+            /* margin-inline: 5%;
+            margin-top: 100px;
+            margin-bottom: 100px; */
+        }
+        tr {
+            text-align: left;
+        }
+        
+    </style>
+</head>
+<link rel="stylesheet" type="text/css" media="print" href="{{ url_for('static', filename='print.css') }}">
+<body>
+    <div class="form">
+        <h1>USER   INFORMATION</h1>
+        <div class="ig">
+            <img  class="p1" src="{{ url_for('get_file', filename=user.profile_image1) }}" alt="Profile picture">
+            
+        </div>
+        <table class="center">
+            <tr>
+                <td><p>Name(As per Aadhar Card):</p></td>
+                <td class="m"><p>{{ user.pname }}</p></td>
+            </tr>
+            <tr>
+                <td><p>Contact Number:</p></td>
+                <td class="m"><p>{{ user.phoneNumber }}</p></td>
+            </tr> 
+            <tr>
+                <td><p>Email:</p></td>
+                <td class="m"><p>{{ user.email }}</p></td>
+            </tr>
+            <tr>
+                <td><p>Registration number:</p></td>
+                <td class="m"><p>{{ user.registration_number }}</p></td>
+            </tr>
+            <tr>
+                <td><p>Selected:</p></td>
+                <td class="m"><p>{{user.selected}}</p></td>
+            </tr>
+        </table>
+    </div>
+    <!-- Ensure only one form for downloading the document exists in user_info.html -->
+    <form action="{{ url_for('download_user_document', user_id=user['_id']) }}" method="POST">
+        <button type="submit" style="border: 1px solid black; border-radius: 15px;background-color: black; color: white;">Download PDF</button>
+    </form>
+
+    <script>
+        function printUserInfo() {
+            window.print()
+        }
+    </script>
+    </body>
+</html>

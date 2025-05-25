@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link rel="icon" type="image/x-icon" href="/static/images/lampbookcopy.jpg">
+    <style type="text/css">
+        h1 {
+            text-align: center;
+        }
+        body {
+            /* font-family: 'Times New Roman', serif; */
+            background-color: silver;
+            background-size: cover;
+            background-position: center;
+            margin: 40px;
+            padding: 20px;
+            height: 100vh;
+        }
+
+        form {
+            width: auto;
+            /* font-family: 'Georgia', monospace; */
+            background: rgba(255, 255, 255, 0.5);
+            padding: 20px;
+            border-radius: 20px;
+            margin: auto;
+            margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            position: relative; /* Ensure relative positioning for absolute child elements */
+        }
+
+        form::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 80%;
+            background: url('/static/images/<link rel="icon" type="image/x-icon" href="/static/images/lampbookcopy.jpg">') no-repeat center center;
+            background-size: contain;
+            opacity: 0.2; /* Adjust the transparency of the watermark */
+            z-index: -1; /* Ensure the watermark is behind the form content */
+        }
+
+        div {
+            display: flex;
+            /* justify-content: space-between; */
+            margin-bottom: 10px;
+        }
+
+        label,
+        input[type="email"],
+        input[type="date"],
+        input[type="radio"],
+        input[type="file"],
+        input[type="submit"] {
+            flex: 1;
+            margin-bottom: 5px;
+        }
+
+        input {
+            height: 20px;
+            width: 220px;
+        }
+
+        input[type="submit"] {
+            color: black;
+            background-color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 auto;
+            display: block;
+            cursor: pointer;
+        }
+        .custom-file-input {
+    width: 220px;
+    border-radius: 25px;
+    /* border: 2px solid #000000; */
+    padding: 11px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+    background: #000000;
+    color: white;
+    /* padding: 8px 16px; */
+    border: none;
+    /* border-radius: 25px; */
+    cursor: pointer;
+}
+
+.custom-file-input::-webkit-file-upload-button:hover {
+    background: #000000;
+    height: auto;
+}
+
+.custom-file-input::file-selector-button {
+    background: #000000;
+    /* color: white; */
+    padding: 8px 16px;
+    /* border: none; */
+    border-radius: 17px;
+    cursor: pointer;
+    /* height: auto; */
+}
+
+.custom-file-input::file-selector-button:hover {
+    background: #000000;
+    height: auto;
+}
+
+    </style>
+    <script>
+        function showHideTextBox(elementId, textBoxId) {
+            var radioButton = document.getElementById(elementId);
+            var textBoxDiv = document.getElementById(textBoxId);
+
+            if (radioButton.checked) {
+                textBoxDiv.style.display = "block";
+            } else {
+                textBoxDiv.style.display = "none";
+            }
+        }
+
+        function toggleWorkExperienceFields() {
+            var workExperienceYes = document.getElementById('work_experience_yes');
+            var workExperienceFields = document.getElementById('work_experience_fields');
+
+            if (workExperienceYes.checked) {
+                workExperienceFields.style.display = 'block';
+            } else {
+                workExperienceFields.style.display = 'none';
+            }
+        }
+
+        function toggleSiblingFields() {
+            var siblingsYes = document.getElementById('siblings_yes');
+            var siblingFields = document.getElementById('sibling_fields');
+
+            if (siblingsYes.checked) {
+                siblingFields.style.display = 'block';
+            } else {
+                siblingFields.style.display = 'none';
+            }
+        }
+
+        function toggleSiblingDetails() {
+            var siblingTypeYes = document.querySelector('input[name="sibling_type"]:checked');
+            //var siblingTypeYes = document.getElementById('sibling_type_yes');
+            var siblingDetails = document.getElementById('sibling_details');
+
+            if (siblingTypeYes) {
+                siblingDetails.style.display = 'block';
+            } else {
+                siblingDetails.style.display = 'none';
+            }
+        }
+
+        function toggleSiblingFinalDetails() {
+            var siblingAgeYes = document.querySelector('input[name="sibling_age"]:checked');
+            //var siblingTypeYes = document.getElementById('sibling_type_yes');
+            var sibling_final_details = document.getElementById('sibling_final_details');
+
+            if (siblingAgeYes) {
+                sibling_final_details.style.display = 'block';
+            } else {
+                sibling_final_details.style.display = 'none';
+            }
+        }
+
+        
+        
+        document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('oncampus_fields').style.display = 'none';
+        document.getElementById('offcampus_fields').style.display = 'none';
+        document.getElementById('reference_fields').style.display = 'none';
+        document.getElementById('walkin_fields').style.display = 'none';
+        document.getElementById('current_employee_fields').style.display = 'none';
+        document.getElementById('ex_employee_fields').style.display = 'none';
+    });
+
+
+    function toggleRegistrationFields() {
+
+    var registrationType = document.querySelector('input[name="registration_type"]:checked');
+    var oncampusFields = document.getElementById('oncampus_fields');
+    var offcampusFields = document.getElementById('offcampus_fields');
+    var referenceFields = document.getElementById('reference_fields');
+    var walkinFields = document.getElementById('walkin_fields');
+
+    // Hide all fields initially
+    oncampusFields.style.display = 'none';
+    offcampusFields.style.display = 'none';
+    referenceFields.style.display = 'none';
+    walkinFields.style.display = 'none';
+
+    // Show relevant fields based on the selected registration type
+    if (registrationType) {
+        var selectedType = registrationType.value;
+        if (selectedType === 'On-campus') {
+            oncampusFields.style.display = 'block';
+        } else if (selectedType === 'Off-campus') {
+            offcampusFields.style.display = 'block';
+        } else if (selectedType === 'Reference') {
+            referenceFields.style.display = 'block';
+            //toggleReferenceDetails();
+        } else if (selectedType === 'Walk-In') {
+            walkinFields.style.display = 'block';
+        }
+    }
+}
+
+
+
+        function toggleReferenceDetails() {
+            var referenceType = document.querySelector('input[name="reference_type"]:checked').value;
+
+            //document.getElementById('current_employee_fields').classList.add('hidden');
+            //document.getElementById('ex_employee_fields').classList.add('hidden');
+
+            if (referenceType === 'Current Employee') {
+                document.getElementById('current_employee_fields').style.display='block';
+                document.getElementById('ex_employee_fields').style.display='none';
+            } else if (referenceType === 'Ex Employee') {
+                document.getElementById('ex_employee_fields').style.display='block';
+                document.getElementById('current_employee_fields').style.display='none';
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <!-- {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="flashes">
+          {% for category, message in messages %}
+            <li class="{{ category }}">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %} -->
+    <div>
+        <!-- <h1 style="text-align: center;">APPLICATION FORM</h1> -->
+        <form action="{{ url_for('register') }}" method="post" enctype="multipart/form-data">
+            <h1 style="text-align: center;">APPLICATION FORM</h1>
+            <h4>Candidate Personal Details:</h4>
+            <div class="row" style="padding-left: 20px;">
+                <div class="col-4" style="padding-left: 10px;">
+                    <div style="width: 200px;">
+                        <label for="pname" style="padding-right: 20px;">Name(As Per Aadhar Card):</label><br>
+                    </div>
+                    <input type="text" name="pname" required style="width: 420px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px; ">
+                </div>
+            </div>
+
+            <div class="row" style="padding-left: 20px;">
+                <div class="col-4" style="padding-left: 10px;">
+                    <div style="width: 200px;">
+                        <label for="gender" style="padding-right: 20px;">Gender:</label><br>
+                    </div>
+                    <input type="text" name="gender" required style="width: auto; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px; ">
+                </div>
+            </div>
+
+            <div class="col-4" style="padding-left: 30px;">
+                <div style="width: 200px;">
+                    <label for="dob">Date of Birth:</label>
+                </div>
+                <div style="width: 12%;">
+                <input type="date" name="dob" required style="width: 10px; border-radius: 25px; border: 2px solid #000000;
+                padding: 4px;">
+                </div>
+            </div>
+
+            <div class="row" style="padding-left: 20px;">
+                <div class="col-4" style="padding-left: 10px;">
+                    <div style="width: 200px;">
+                        <label for="age" style="padding-right: 20px;">Age:</label><br>
+                    </div>
+                    <input type="text" name="age" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+            </div>
+
+            <div class="row" style="padding-left: 20px;">
+                <div class="col-4" style="padding-left: 10px;">
+                    <div style="width: 200px;">
+                        <label for="marital_status" style="padding-right: 20px;">Marital Status:</label><br>
+                    </div>
+                    <input type="text" name="marital_status" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+                <div class="col-4" style="padding-left: 30px;">
+                    <div style="width: 200px;">
+                        <label for="phoneNumber" style="padding-right: 20px;">Contact Number:</label><br>
+                    </div>
+                    <input type="number" name="phoneNumber" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+                <br>
+                <div class="col-4" style="padding-left: 30px;">
+                    <div style="width: 200px;">
+                        <label for="email" style="padding-right: 20px;">Email:</label>
+                    </div>
+                    <input type="email" name="email" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+            </div>
+
+            <div class="row" style="padding-left: 20px;">
+                <div class="col-4" style="padding-left: 10px;">
+                    <div style="width: 200px;">
+                        <label for="fatherName" style="padding-right: 20px;">Father Name:</label>
+                    </div>
+                    <input type="text" name="fatherName" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+
+                <div class="col-4" style="padding-left: 30px;">
+                    <div style="width: 200px;">
+                        <label for="fatheroccupation" style="padding-right: 20px;">Father Occupation:</label>
+                    </div>
+                    <input type="text" name="fatheroccupation" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+
+                <div class="col-4" style="padding-left: 30px;">
+                    <div style="width: 200px;">
+                        <label for="motherName" style="padding-right: 20px;">Mother Name:</label>
+                    </div>
+                    <input type="text" name="motherName" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+            </div>
+            <div class="row" style="padding-left: 20px;">
+                <div class="col-4" style="padding-left: 10px;">
+                    <div style="width: 200px;">
+                        <label for="fatherNumber" style="padding-right: 20px;">Father Contact:</label>
+                    </div>
+                    <input type="number" name="fatherNumber" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+            </div>
+            <div class="row" style="padding-left: 20px;">
+                <div class="col-4" style="padding-left: 10px;">
+                    <div style="width: 200px;">
+                        <label for="Permanent_address" style="padding-right: 20px;">Permanent Address:</label>
+                    </div>
+                    <input type="textarea" name="Permanent_address" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+                <div class="col-4" style="padding-left: 30px;">
+                    <div style="width: 200px;">
+                        <label for="Residencial_address" style="padding-right: 20px;">Current Address:</label>
+                    </div>
+                    <input type="textarea" name="Residencial_address" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+            </div>
+            <h4>Candidate Educational Details:</h4>
+            <h5>Tenth Class Details:</h5>
+            <div class="row" style="padding-left: 20px;">
+                <div class="col-4" style="padding-left: 10px;">
+                    <div style="width: 200px;">
+                        <label for="schoolInstituteName" style="padding-right: 20px;">School Institute Name:</label>
+                    </div>
+                    <input type="text" name="schoolInstituteName" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+                <div class="col-4" style="padding-left: 30px;">
+                    <div style="width: 200px;">
+                        <label for="SchoolUniversity" style="padding-right: 20px;">Stream:</label>
+                    </div>
+                    <input type="text" name="SchoolUniversity" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+                <div class="col-4" style="padding-left: 30px;">
+                    <div style="width: 200px;">
+                        <label for="SchoolDegreeName" style="padding-right: 20px;">School Board Name:</label>
+                    </div>
+                    <input type="text" name="SchoolDegreeName" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+            </div>
+            <div class="row" style="padding-left: 20px;">
+                <div class="col-4" style="padding-left: 10px;">
+                    <div style="width: 200px;">
+                        <label for="Percentage_s" style="padding-right: 20px;">Percentage:</label>
+                    </div>
+                    <input type="number" name="Percentage_s" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+                <div class="col-4" style="padding-left: 30px;">
+                    <div style="width: 200px;">
+                        <label for="yearofpassings" style="padding-right: 20px;">Year of Passing:</label>
+                    </div>
+                    <input type="number" name="yearofpassings" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+            </div>
+            <h5>Twelth class Details:</h5>
+            <div class="row" style="padding-left: 20px;">
+                <div class="col-4" style="padding-left: 10px;">
+                    <div style="width: 200px;">
+                        <label for="IntermediateInstituteName" style="padding-right: 20px;">Intermediate Institute Name:</label>
+                    </div>
+                    <input type="text" name="IntermediateInstituteName" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+                <div class="col-4" style="padding-left: 30px;">
+                    <div style="width: 200px;">
+                        <label for="IntermediateUniversity" style="padding-right: 20px;">Intermediate Stream:</label>
+                    </div>
+                    <input type="text" name="IntermediateUniversity" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+                <div class="col-4" style="padding-left: 30px;">
+                    <div style="width: 200px;">
+                        <label for="IntermediateDegreeName" style="padding-right: 20px;">Intermediate Board Name:</label>
+                    </div>
+                    <input type="text" name="IntermediateDegreeName" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+            </div>
+            <div class="row" style="padding-left: 20px;">
+                <div class="col-4" style="padding-left: 10px;">
+                    <div style="width: 200px;">
+                        <label for="Percentage_i" style="padding-right: 20px;">Intermediate Percentage:</label>
+                    </div>
+                    <input type="number" name="Percentage_i" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+                <div class="col-4" style="padding-left: 30px;">
+                    <div style="width: 200px;">
+                        <label for="yearofpassingi" style="padding-right: 20px;">Year of Passing:</label>
+                    </div>
+                    <input type="number" name="yearofpassingi" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+            </div>
+            <h5>Undergraduate Details:</h5>
+            <div class="row" style="padding-left: 20px;">
+                <div class="col-4" style="padding-left: 10px;">
+                    <div style="width: 200px;">
+                        <label for="undergraduateDegreeName" style="padding-right: 20px;">Undergraduate Degree Name:</label>
+                    </div>
+                    <input type="text" name="undergraduateDegreeName" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+                <div class="col-4" style="padding-left: 30px;">
+                    <div style="width: 200px;">
+                        <label for="undergraduateInstituteName" style="padding-right: 20px;">Undergraduate Institute Name:</label>
+                    </div>
+                    <input type="text" name="undergraduateInstituteName" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+                <div class="col-4" style="padding-left: 30px;">
+                    <div style="width: 200px;">
+                        <label for="undergraduateUniversity" style="padding-right: 20px;">Undergraduate University:</label>
+                    </div>
+                    <input type="text" name="undergraduateUniversity" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+            </div>
+            <div class="row" style="padding-left: 20px;">
+                <div class="col-4" style="padding-left: 10px;">
+                    <div style="width: 200px;">
+                        <label for="Percentage_ug" style="padding-right: 20px;">Undergraduate Percentage:</label>
+                    </div>
+                    <input type="number" name="Percentage_ug" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+                <div class="col-4" style="padding-left: 30px;">
+                    <div style="width: 200px;">
+                        <label for="yearofpassingug" style="padding-right: 20px;">Year of Passing:</label>
+                    </div>
+                    <input type="number" name="yearofpassingug" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+            </div>
+
+            <h5>Postgraduate Details:</h5>
+            <div class="row" style="padding-left: 20px;">
+                <div class="col-4" style="padding-left: 10px;">
+                    <div style="width: 200px;">
+                        <label for="postgraduateDegreeName" style="padding-right: 20px;">Postgraduate Degree Name:</label>
+                    </div>
+                    <input type="text" name="postgraduateDegreeName" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+                <div class="col-4" style="padding-left: 30px;">
+                    <div style="width: 200px;">
+                        <label for="postgraduateInstituteName" style="padding-right: 20px;">Postgraduate Institute Name:</label>
+                    </div>
+                    <input type="text" name="postgraduateInstituteName"  style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+                <div class="col-4" style="padding-left: 30px;">
+                    <div style="width: 200px;">
+                        <label for="postgraduateUniversity" style="padding-right: 20px;">Postgraduate University:</label>
+                    </div>
+                    <input type="text" name="postgraduateUniversity"  style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+            </div>
+            <div class="row" style="padding-left: 20px;">
+                <div class="col-4" style="padding-left: 10px;">
+                    <div style="width: 200px;">
+                        <label for="Percentage_pg" style="padding-right: 20px;">Postgraduate Percentage:</label>
+                    </div>
+                    <input type="number" name="Percentage_pg"  style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+                <div class="col-4" style="padding-left: 30px;">
+                    <div style="width: 200px;">
+                        <label for="yearofpassingpg" style="padding-right: 20px;">Year of Passing:</label>
+                    </div>
+                    <input type="number" name="yearofpassingpg"  style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+            </div>
+            
+            
+            <h5>Work Experience:</h5>
+            <div class="row" style="padding-left: 20px;">
+                <div class="col-4" style="padding-left: 10px;">
+                    <div style="width: 200px;">
+                        <label for="work_experience">State whether you've a prior work experience:</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="work_experience" id="work_experience_yes" value="yes" onclick="toggleWorkExperienceFields()" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                        padding: 4px;  cursor: pointer;">
+                        <label for="work_experience"> Yes</label>
+
+                        <input type="radio" name="work_experience" value="no" onclick="toggleWorkExperienceFields()" required style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                        padding: 4px;  cursor: pointer;">
+                        <label for="work_experience"> No</label>
+                    </div>
+                </div>
+            </div>
+            <div id="work_experience_fields" style="display: none; padding-left: 20px;">
+                <div class="row">
+                    <div class="col-4" style="padding-left: 10px;">
+                        <div style="width: 200px;">
+                            <label for="organization_name" style="padding-right: 20px;">Name of the Organization:</label>
+                        </div>
+                        <input type="text" name="organization_name" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                        padding: 4px;">
+                    </div>
+                    <div class="col-4" style="padding-left: 30px;">
+                        <div style="width: 200px;">
+                            <label for="designation" style="padding-right: 20px;">Designation:</label>
+                        </div>
+                        <input type="text" name="designation" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                        padding: 4px;">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4" style="padding-left: 10px;">
+                        <div style="width: 200px;">
+                            <label for="time_period_from" style="padding-right: 20px;">From:</label>
+                        </div>
+                        <input type="date" name="time_period_from" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                        padding: 4px;">
+                    </div>
+                    <div class="col-4" style="padding-left: 30px;">
+                        <div style="width: 200px;">
+                            <label for="time_period_to" style="padding-right: 20px;">To:</label>
+                        </div>
+                        <input type="date" name="time_period_to" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                        padding: 4px;">
+                    </div>
+                </div>
+            </div>
+            <h5>Sibling Details:</h5>
+            <div class="row" style="padding-left: 20px;">
+                <div class="col-4" style="padding-left: 10px;">
+                    <div style="width: 200px;">
+                        <label for="siblings" style="padding-right: 20px;">Any siblings:</label>
+                    </div>
+
+                        <input type="radio" name="siblings" value="yes" id="siblings_yes" onclick="toggleSiblingFields()" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                        padding: 4px;  cursor: pointer;">
+                    <label for="siblings">Yes</label>
+                    
+                        <input type="radio" name="siblings" value="no" id="siblings_no" onclick="toggleSiblingFields()" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                        padding: 4px;  cursor: pointer;">
+                    <label for="siblings">No</label>
+                </div>
+            </div>
+            <div id="sibling_fields" style="display: none;">
+                <div class="row" style="padding-left: 20px;">
+                    <div class="col-4" style="padding-left: 10px;">
+                        <div style="width: 200px;">
+                            <label for="sibling_type" style="padding-right: 20px;">Sibling Type:</label>
+                        </div>
+                        
+                            <input type="radio" name="sibling_type" value="brother" onclick="toggleSiblingDetails()" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                            padding: 4px;  cursor: pointer;"> 
+                        <label for="sibling_type">Brother</label>
+                        
+                            <input type="radio" name="sibling_type" value="sister" onclick="toggleSiblingDetails()" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                            padding: 4px; cursor: pointer;"> 
+                        <label for="sibling_type">Sister</label>
+                    </div>
+                </div>
+                <div id="sibling_details" style="display: none;">
+                    <div class="row" style="padding-left: 20px;">
+                        <div class="col-4" style="padding-left: 10px;">
+                            <div style="width: 200px;">
+                                <label for="sibling_age" style="padding-right: 20px;">Elder/Younger:</label>
+                            </div>
+                            
+                                <input type="radio" name="sibling_age" value="older" onclick="toggleSiblingFinalDetails()" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                                padding: 4px; cursor: pointer;"> 
+                            <label for="sibling_age">Elder</label>
+                            
+                                <input type="radio" name="sibling_age" value="younger" onclick="toggleSiblingFinalDetails()" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                                padding: 4px; cursor: pointer;"> 
+                            <label for="sibling_age">Younger</label>
+                        </div>
+                    </div>
+                    <div id="sibling_final_details" style="display: none;">
+                        <div class="row" style="padding-left: 20px;">
+                            <div class="col-4" style="padding-left: 10px;">
+                                <div style="width: 200px;">
+                                    <label for="sibling_name" style="padding-right: 20px;">Name:</label>
+                                </div>
+                                <input type="text" name="sibling_name" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                                padding: 4px;">
+                            </div> 
+                            <div class="col-4" style="padding-left: 30px;">
+                                <div style="width: 200px;">
+                                    <label for="sibling_course" style="padding-right: 20px;">Study/Working:</label>
+                                </div>
+                                <input type="text" name="sibling_course" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                                padding: 4px;">
+                            </div>
+                        </div>
+                        <div class="row" style="padding-left: 20px;">
+                            <div class="col-4" style="padding-left: 10px;">
+                                <div style="width: 200px;">
+                                    <label for="sibling_institute" style="padding-right: 20px;">Organization Name:</label>
+                                </div>
+                                <input type="text" name="sibling_institute" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                                padding: 4px;">
+                            </div>
+                            <div class="col-4" style="padding-left: 30px;">
+                                <div style="width: 200px;">
+                                    <label for="sibling_location" style="padding-right: 20px;">Location:</label>
+                                </div>
+                                <input type="text" name="sibling_location" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                                padding: 4px;">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="row" style="padding-left: 20px;">
+                        <div class="col-4" style="padding-left: 10px;">
+                            <div style="width: 200px;">
+                                <label for="sibling_institute" style="padding-right: 20px;">Organization Name:</label>
+                            </div>
+                            <input type="text" name="sibling_institute" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                            padding: 4px;">
+                        </div>
+                        <div class="col-4" style="padding-left: 30px;">
+                            <div style="width: 200px;">
+                                <label for="sibling_location" style="padding-right: 20px;">Location:</label>
+                            </div>
+                            <input type="text" name="sibling_location" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                            padding: 4px;">
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+
+            <h4>Registration details:</h4>
+            <div class="row" style="padding-left: 20px;">
+
+            </div>
+            <div class="row" style="padding-left: 20px;">
+                <div class="col-4" style="padding-left: 10px;">
+                    <div style="width: 200px;">
+                        <label for="registration_type">Select Registration Type:</label>
+                    </div>
+                    <div>
+                        <input type="radio" name="registration_type" value="Off-campus" onclick="toggleRegistrationFields()" required style=" cursor: pointer;">
+                        <label for="registration_type"> Off-campus</label>
+
+                        <input type="radio" name="registration_type" value="On-campus" onclick="toggleRegistrationFields()" required style=" cursor: pointer;">
+                        <label for="registration_type"> On-campus</label>
+
+                        <input type="radio" name="registration_type" value="Reference" onclick="toggleRegistrationFields()" required style=" cursor: pointer;">
+                        <label for="registration_type"> Reference</label>
+
+                        <input type="radio" name="registration_type" value="Walk-In" onclick="toggleRegistrationFields()" required style=" cursor: pointer;">
+                        <label for="registration_type"> Walk-In</label> 
+                    </div>
+                </div>
+            </div>
+            
+    <div id="oncampus_fields" >
+        <h5>On-campus Drive Details:</h5>
+        <div class="row" style="padding-left: 20px;">
+            <div class="col-4" style="padding-left: 10px;">
+                <label for="oncampus_college_name">College Name:</label>
+                <input type="text" id="oncampus_college_name" name="oncampus_college_name" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                padding: 4px;">
+            </div>
+            <div class="col-4" style="padding-left: 30px;">
+                <label for="oncampus_location">Location:</label>
+                <input type="text" id="oncampus_location" name="oncampus_location" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                padding: 4px;">
+            </div>
+        </div>
+    </div>
+
+    <div id="offcampus_fields" >
+        <h5>Off-campus Drive Details:</h5>
+        <div class="row" style="padding-left: 20px;">
+            <div class="col-4" style="padding-left: 10px;">
+                <label for="offcampus_college_name">College Name:</label>
+                <input type="text" id="offcampus_college_name" name="offcampus_college_name" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                padding: 4px;">
+            </div>
+            <div class="col-4" style="padding-left: 30px;">
+                <label for="offcampus_location">Location:</label>
+                <input type="text" id="offcampus_location" name="offcampus_location" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                padding: 4px;">
+            </div>
+        </div>
+    </div>
+
+    <div id="reference_fields" >
+        <h5>Reference Details:</h5>
+        <div class="row" style="padding-left: 20px;">
+            <div class="col-4" style="padding-left: 10px;">
+                <input type="radio" name="reference_type" value="Current Employee" onclick="toggleReferenceDetails()"  style=" cursor: pointer;">
+                <label for="reference_type">Current Employee</label>
+                <input type="radio" name="reference_type" value="Ex Employee" onclick="toggleReferenceDetails()"  style=" cursor: pointer;">
+                <label for="reference_type">Ex Employee</label>
+            </div>
+        </div>
+        <div id="current_employee_fields" >
+            <div class="row" style="padding-left: 20px;">
+                <div class="col-4" style="padding-left: 10px;">
+                    <label for="current_employee_id">Employee ID:</label>
+                    <input type="text" id="current_employee_id" name="current_employee_id" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+                <div class="col-4" style="padding-left: 30px;">
+                    <label for="current_employee_name">Name:</label>
+                    <input type="text" id="current_employee_name" name="current_employee_name" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+                <div class="col-4" style="padding-left: 30px;">
+                    <label for="relation_with_reference">Relation with the Reference:</label>
+                    <input type="text" id="relation_with_reference" name="relation_with_reference" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+            </div>
+        </div>
+        <div id="ex_employee_fields" >
+            <div class="row" style="padding-left: 20px;">
+                <div class="col-4" style="padding-left: 10px;">
+                    <label for="ex_employee_name">Name:</label>
+                    <input type="text" id="ex_employee_name" name="ex_employee_name" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+                <div class="col-4" style="padding-left: 30px;">
+                    <label for="ex_employee_id">ID:</label>
+                    <input type="text" id="ex_employee_id" name="ex_employee_id" style="width: 220px; border-radius: 25px; border: 2px solid #000000;
+                    padding: 4px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="walkin_fields" >
+        <h5>Walk-In Details:</h5>
+        <div class="row" style="padding-left: 20px;">
+            <div class="col-4" style="padding-left: 10px;">
+                <input type="radio" name="walkin_type" value="Job Portal"  style=" cursor: pointer;">
+                <label for="walkin_type">Job Portal</label>
+                <input type="radio" name="walkin_type" value="LinkedIn" style=" cursor: pointer;">
+                <label for="walkin_type">LinkedIn</label>
+                <input type="radio" name="walkin_type" value="Social Media" style=" cursor: pointer;">
+                <label for="walkin_type">Social Media</label>
+                <input type="radio" name="walkin_type" value="Reference by TPO" style=" cursor: pointer;">
+                <label for="walkin_type">Reference by TPO</label>
+                <input type="radio" name="walkin_type" value="Friend of Friend" style=" cursor: pointer;">
+                <label for="walkin_type">Friend of Friend</label>
+            </div>
+        </div>
+    </div>
+            
+            <h4>Documents:</h4>
+            
+            <div class="row" style="padding-left: 20px;">
+                <div class="col-4" style="padding-left: 10px;">
+                    <div style="width: 200px;">
+                        <label for="photo1">Candidate's Passport Size Picture (100kb only):</label>
+                    </div>
+                    <div><input class="form-control custom-file-input" type="file" name="img" required></div>
+                </div>
+                <!-- <div class="col-4" style="padding-left: 30px;">
+                    <div style="width: 200px;">
+                        <label for="photo2">Candidate's Signature (100kb only):</label>
+                    </div>
+                    <div><input class="form-control custom-file-input" type="file" name="img1" required></div>
+                </div> -->
+            </div>
+            <div class="row" style="padding-left: 20px;">
+                <div class="col-4" style="padding-left: 10px;">
+                    <div style="width: 200px;">
+                        <label for="pdf_file">Resume (100kb only):</label>
+                    </div>
+                    <input class="custom-file-input" type="file" name="pdf_file" accept=".pdf" required>
+                </div>
+            </div>
+            
+            <h5>Declaration:</h5>
+                <div class="row" style="padding-left: 20px;">
+                    <div class="col-4" style="padding-left: 10px;">
+                        <div style="width: 200px;">
+                            <label for="declaration">Do you agree with the terms and conditions?</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" name="declaration" value="agree" required style="cursor: pointer;">
+                            <label for="agree"> I declare that I have understand the all the terms and conditions of the company also, I aware of all the information like Salary, Bond, and timings of the company.</label>
+
+                            <!-- <input type="radio" name="declaration" value="disagree" required>
+                            <label for="disagree">Disagree</label> -->
+                        </div>
+                    </div>
+                </div>
+            <input name="sub" type="submit" value="Submit" style="border: 1px solid black; border-radius: 15px;background-color: black; color: white;">
+    </div>
+    </form>
+</body>
+</html>
